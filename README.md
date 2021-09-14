@@ -24,7 +24,7 @@ Refer to https://docs.docker.com/get-docker/ to install docker
 
 * Clone the project into local
     ```bash
-    git clone 
+    git clone https://github.com/Rudrarka/planning-poker-ui-ts.git
     ```
 
 * Set the value of REACT_APP_SOCKET_URL which is the url of the backend server of the application(http://0.0.0.0:5000). 
