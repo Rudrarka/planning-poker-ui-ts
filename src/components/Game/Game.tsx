@@ -41,6 +41,14 @@ const Game = ({ match }: any) => {
         navigator.clipboard.writeText(window.location.href);
         setShowNotification(true);
     }
+    
+    const handleReset = () => {
+        socket.emit("reset_game", { "game_id": game.id })
+    }
+    
+    const handleEndGame = () => {
+        socket.emit("end_game", { "game_id": game.id })
+    }
 
     const resetFactorySettings = () => {
         handleCurrentPlayer(initialPlayerState)
@@ -71,6 +79,16 @@ const Game = ({ match }: any) => {
 
     useEffect(() => {
         socket.on("player_left", ({ game, player_id }) => {
+            handleGame(game);
+        });
+        
+        socket.on("game_ended", () => {
+            resetFactorySettings()
+            history.push("/")
+        });
+        
+        socket.on("game_reset", ( game ) => {
+            console.log(game)
             handleGame(game);
         });
 
@@ -109,13 +127,13 @@ const Game = ({ match }: any) => {
                     <Button variant="contained" color="primary" className={classes.button} onClick={handleInvite}>
                         Invite Players
                     </Button>
-                    <Button variant="contained" color="primary" className={classes.button}>
+                    <Button variant="contained" color="primary" className={classes.button} onClick={handleReset}>
                         Reset
                     </Button>
                     <Button variant="contained" color="primary" className={classes.button} onClick={handleLeave}>
                         Leave Game
                     </Button>
-                    <Button variant="contained" color="primary" className={classes.button}>
+                    <Button variant="contained" color="primary" className={classes.button} onClick={handleEndGame}>
                         End Game
                     </Button>
                     <Button variant="contained" color="primary" className={classes.button} onClick={handleNewGame}>
