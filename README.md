@@ -27,8 +27,8 @@ Refer to https://docs.docker.com/get-docker/ to install docker
     git clone 
     ```
 
-* Set the value of REACT_APP_SOCKET_URL which is the backend server of the application. 
-The application can be for here: 
+* Set the value of REACT_APP_SOCKET_URL which is the url of the backend server of the application(http://0.0.0.0:5000). 
+The backend application can be found here: https://github.com/Rudrarka/planning-poker-server
 
 * Run the following commands to build and run the application:
     ```bash
